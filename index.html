@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>神戸中央支部 近未来プロジェクト 研修アーカイブ</title>
+  <style>
+    :root {
+      --navy: #16324f;
+      --ink: #1f2933;
+      --muted: #66788a;
+      --line: #d8e0e8;
+      --paper: #f6f8fa;
+      --white: #ffffff;
+      --red: #b73535;
+      --teal: #26776d;
+      --gold: #a9792b;
+      --blue: #2d5b8a;
+      --green: #3f7d4d;
+      --shadow: 0 14px 30px rgba(22, 50, 79, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Meiryo", "Yu Gothic", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 26px 32px 22px;
+    }
+
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: block;
+    }
+
+    h1 {
+      margin: 0;
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .title-kicker,
+    .title-main {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .title-kicker {
+      font-size: 25px;
+    }
+
+    .title-main {
+      margin-top: 2px;
+      font-size: 30px;
+    }
+
+    .mobile-title-break {
+      display: none;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px 24px 46px;
+    }
+
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 12px 0;
+      background: rgba(246, 248, 250, .94);
+      backdrop-filter: blur(8px);
+    }
+
+    .control-row {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .control-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .jump-nav,
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .jump-button,
+    .filter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--navy);
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .jump-button:hover {
+      border-color: var(--navy);
+      background: #f8fbfd;
+    }
+
+    .filter[aria-pressed="true"] {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 10px 0 22px;
+    }
+
+    .stat {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 18px rgba(22, 50, 79, .05);
+    }
+
+    .stat b {
+      display: block;
+      color: var(--navy);
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section-title {
+      margin: 28px 0 12px;
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .common-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .common-link,
+    .resource {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--blue);
+      border-radius: 6px;
+      padding: 13px 14px;
+      min-height: 82px;
+      box-shadow: 0 8px 18px rgba(22, 50, 79, .05);
+    }
+
+    .common-link:hover,
+    .resource:hover {
+      border-color: #9fb2c4;
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    .file-name {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .file-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 22px;
+      padding: 2px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 11px;
+      background: #f9fbfc;
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .file-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 6px 12px;
+      border: 1px solid #b8c8d8;
+      border-radius: 6px;
+      background: #f9fbfc;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .file-button:hover {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .book-card {
+      grid-template-columns: 96px 1fr;
+      align-items: center;
+      gap: 14px;
+      border-left-color: var(--teal);
+      min-height: 150px;
+      cursor: zoom-in;
+    }
+
+    .book-card:hover {
+      border-color: #77b8b5;
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+
+    .book-card:focus-visible {
+      outline: 3px solid rgba(38, 119, 109, .35);
+      outline-offset: 3px;
+    }
+
+    .book-cover {
+      width: 84px;
+      aspect-ratio: 805 / 1136;
+      object-fit: cover;
+      border-radius: 3px;
+      box-shadow: 0 8px 18px rgba(22, 50, 79, .24);
+      background: #0aa;
+    }
+
+    .book-copy {
+      display: grid;
+      gap: 7px;
+      align-content: center;
+    }
+
+    .book-note-main {
+      white-space: nowrap;
+    }
+
+    .book-note-extra {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .session {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(22, 50, 79, .06);
+      min-width: 0;
+      scroll-margin-top: 118px;
+    }
+
+    .session-head {
+      position: relative;
+      padding: 18px 22px;
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr) 142px;
+      grid-template-rows: auto auto;
+      column-gap: 18px;
+      row-gap: 7px;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(0, 119, 132, .95), rgba(11, 178, 174, .88)),
+        url("アーカイブ用/共通/TKC会計人業務の未来設計.png");
+      background-size: cover;
+      background-position: center 52%;
+      isolation: isolate;
+    }
+
+    .session-head::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 22% 18%, rgba(255,255,255,.16), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.08));
+      z-index: -1;
+    }
+
+    .session-number {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      font-size: 14px;
+      font-weight: 800;
+      opacity: .95;
+      padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,.38);
+      background: rgba(0, 49, 61, .18);
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .session-title {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-shadow: 0 1px 3px rgba(0,0,0,.22);
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .part-title {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 15px;
+      line-height: 1.45;
+      color: rgba(255,255,255,.88);
+      font-weight: 700;
+    }
+
+    .chapter-title {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .text-range {
+      grid-column: 2;
+      grid-row: 2;
+      color: rgba(255,255,255,.92);
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .session-date {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: right;
+      font-weight: 700;
+    }
+
+    .session-body {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .session-summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary-text {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--ink);
+      overflow-wrap: anywhere;
+    }
+
+    .resource-count {
+      min-width: 88px;
+      text-align: center;
+      color: var(--navy);
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .resource-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .resource[data-kind~="resume"] { border-left-color: var(--red); }
+    .resource[data-kind~="handout"] { border-left-color: var(--blue); }
+    .resource[data-kind~="media"] { border-left-color: var(--teal); }
+
+    .empty {
+      display: none;
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 6px;
+      color: var(--muted);
+    }
+
+    .cover-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(8, 20, 32, .72);
+    }
+
+    .cover-modal.is-open {
+      display: flex;
+    }
+
+    .cover-dialog {
+      position: relative;
+      max-width: min(86vw, 620px);
+      max-height: 90vh;
+      display: grid;
+      gap: 10px;
+      justify-items: center;
+    }
+
+    .cover-dialog img {
+      max-width: 100%;
+      max-height: 84vh;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.45);
+      background: #0aa;
+    }
+
+    .cover-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--navy);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0,0,0,.28);
+    }
+
+    @media (max-width: 900px) {
+      .controls,
+      .session,
+      .session-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .session-head {
+        grid-template-columns: 1fr;
+      }
+
+      .session-number,
+      .session-title,
+      .text-range,
+      .session-date {
+        grid-column: 1;
+        grid-row: auto;
+        text-align: left;
+      }
+
+      .overview,
+      .common-grid,
+      .resource-list {
+        grid-template-columns: 1fr;
+      }
+
+      .filters {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      main,
+      section,
+      .controls,
+      .common-grid,
+      .timeline,
+      .session,
+      .session-head,
+      .session-body,
+      .resource-list {
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .topbar {
+        padding: 24px 24px 22px;
+      }
+
+      .title-kicker,
+      .title-main,
+      .part-title,
+      .chapter-title,
+      .session-title,
+      .summary-text {
+        word-break: break-all;
+      }
+
+      .title-kicker {
+        font-size: 21px;
+        line-height: 1.32;
+      }
+
+      .title-main {
+        margin-top: 4px;
+        font-size: 23px;
+        line-height: 1.34;
+      }
+
+      .mobile-title-break {
+        display: block;
+      }
+
+      main {
+        padding: 18px 14px 36px;
+      }
+
+      .controls {
+        gap: 9px;
+        padding: 10px 0 16px;
+      }
+
+      .control-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .control-label {
+        font-size: 11px;
+      }
+
+      .jump-nav,
+      .filters {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        gap: 7px;
+        max-width: 100%;
+        min-width: 0;
+      }
+
+      .jump-button,
+      .filter {
+        min-height: 34px;
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+
+      .section-title {
+        margin: 24px 0 10px;
+        font-size: 19px;
+      }
+
+      .common-link,
+      .resource {
+        padding: 12px 13px;
+        min-height: 0;
+      }
+
+      .book-card {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .book-cover {
+        width: 82px;
+      }
+
+      .session-head {
+        padding: 14px 16px 15px;
+        row-gap: 8px;
+      }
+
+      .session-number {
+        justify-self: start;
+        width: auto;
+        min-width: 76px;
+        padding: 6px 11px;
+        font-size: 13px;
+      }
+
+      .session-title {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      .part-title {
+        margin-bottom: 4px;
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .chapter-title {
+        font-size: 16px;
+        line-height: 1.42;
+      }
+
+      .text-range,
+      .session-date {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .session-body {
+        padding: 12px;
+      }
+
+      .session {
+        scroll-margin-top: 142px;
+      }
+
+      .session-summary {
+        gap: 10px;
+        padding-bottom: 10px;
+      }
+
+      .summary-text {
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .resource-count {
+        justify-self: start;
+        min-width: 70px;
+        padding: 6px 10px;
+      }
+    }
+
+    @media print {
+      .controls { position: static; }
+      .jump-button, .filter { display: none; }
+      body { background: #fff; }
+      .session, .stat, .resource, .common-link { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <h1><span class="title-kicker">TKC近畿兵庫会神戸中央支部</span><span class="title-main">「月次決算体制の構築支援」<br class="mobile-title-break">実践勉強会 アーカイブ</span></h1>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="controls" aria-label="資料ナビゲーション">
+      <div class="control-row">
+        <div class="control-label">回数ジャンプ</div>
+        <nav class="jump-nav" aria-label="各回へ移動">
+          <a class="jump-button" href="#session-1">第1回</a>
+          <a class="jump-button" href="#session-2">第2回</a>
+          <a class="jump-button" href="#session-3">第3回</a>
+          <a class="jump-button" href="#session-4">第4回</a>
+          <a class="jump-button" href="#session-5">第5回</a>
+          <a class="jump-button" href="#session-6">第6回</a>
+          <a class="jump-button" href="#session-7">第7回</a>
+        </nav>
+      </div>
+      <div class="control-row">
+        <div class="control-label">資料種別</div>
+        <div class="filters" aria-label="資料種別">
+          <button class="filter" type="button" data-filter="resume" aria-pressed="false">レジュメ</button>
+          <button class="filter" type="button" data-filter="handout" aria-pressed="false">配布資料</button>
+          <button class="filter" type="button" data-filter="media" aria-pressed="false">動画</button>
+        </div>
+      </div>
+    </div>
+
+    <section>
+      <h2 class="section-title">共通資料</h2>
+      <div class="common-grid">
+        <a class="common-link searchable" data-kind="handout" href="アーカイブ用/共通/神戸中央 カリキュラム.pdf">
+          <span class="file-name">神戸中央 カリキュラム</span>
+          <span class="file-note">シリーズ全体の流れ</span>
+          <span class="badge-row"><span class="badge">PDF</span><span class="badge">共通</span></span>
+        </a>
+        <div class="common-link searchable" data-kind="handout">
+          <span class="file-name">マンダラチャート</span>
+          <span class="file-note">未来像・目標整理、ワーク用ファイル、入力ツール</span>
+          <span class="file-actions">
+            <a class="file-button" href="アーカイブ用/共通/20250805マンダラチャート.pdf">PDF</a>
+            <a class="file-button" href="アーカイブ用/共通/10年後の未来マンダラチャート.xlsx">Excel</a>
+            <a class="file-button" href="https://takatrp.github.io/mandara/" target="_blank" rel="noopener">ツール</a>
+          </span>
+        </div>
+        <div class="common-link searchable book-card" data-kind="handout" role="button" tabindex="0" aria-label="TKC会計人 業務の未来設計の書影を拡大表示">
+          <img class="book-cover" src="アーカイブ用/共通/TKC会計人業務の未来設計.png" alt="TKC会計人 業務の未来設計 書影">
+          <span class="book-copy">
+            <span class="file-name">TKC会計人<br>業務の未来設計</span>
+            <span class="file-note"><span class="book-note-main">本勉強会の参照テキスト</span><span class="book-note-extra">※サプライネットショップで追加購入できます</span></span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">各回アーカイブ</h2>
+      <div class="timeline">
+        <article id="session-1" class="session searchable" data-kind="resume handout media">
+          <div class="session-head blue">
+            <div class="session-number">第1回</div>
+            <div class="session-title"><span class="part-title">第1部 近未来の会計事務所のあるべき姿</span><span class="chapter-title">第1章 近未来につながる外部環境の変化<br>第2章 近未来を見据えた現状の整理</span></div>
+            <div class="text-range">テキスト範囲：P2〜P13</div>
+            <div class="session-date">2025年9月17日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">第1部「近未来の会計事務所のあるべき姿」。外部環境の変化と、近未来を見据えた現状整理を確認。</div>
+              <div class="resource-count">4件</div>
+            </div>
+            <div class="resource-list">
+              <a class="resource searchable" data-kind="resume" href="アーカイブ用/第1回/第1回レジュメ.pdf"><span class="file-name">第1回レジュメ</span><span class="file-note">配布用PDF</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">主資料</span></span></a>
+              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第1回/第1回かわら版.pdf"><span class="file-name">第1回かわら版</span><span class="file-note">振り返り用</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">参考</span></span></a>
+              <a class="resource searchable" data-kind="media" href="アーカイブ用/第1回/税務行政3.0.mp4"><span class="file-name">税務行政3.0</span><span class="file-note">関連動画</span><span class="badge-row"><span class="badge">MP4</span><span class="badge">動画</span></span></a>
+              <a class="resource searchable" data-kind="media" href="アーカイブ用/第1回/2040年_労働供給制約社会.mp4"><span class="file-name">2040年 労働供給制約社会</span><span class="file-note">関連動画</span><span class="badge-row"><span class="badge">MP4</span><span class="badge">動画</span></span></a>
+            </div>
+          </div>
+        </article>
+
+        <article id="session-2" class="session searchable" data-kind="resume handout">
+          <div class="session-head blue">
+            <div class="session-number">第2回</div>
+            <div class="session-title"><span class="part-title">第1部 近未来の会計事務所のあるべき姿</span><span class="chapter-title">第3章 近未来、さらに求められる税理士の4大業務<br>第4章 あるべき収益構造ー理想と現実のギャップを埋める</span></div>
+            <div class="text-range">テキスト範囲：P14〜P26</div>
+            <div class="session-date">2025年10月30日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">近未来に求められる4大業務と、あるべき収益構造を整理。</div>
+              <div class="resource-count">2件</div>
+            </div>
+            <div class="resource-list">
+              <a class="resource searchable" data-kind="resume" href="アーカイブ用/第2回/第2回レジュメ.pdf"><span class="file-name">第2回レジュメ</span><span class="file-note">配布用PDF</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">主資料</span></span></a>
+              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第2回/第7回税理士実態調査奉修分析.pdf"><span class="file-name">第7回税理士実態調査 報酬分析</span><span class="file-note">参考資料</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">参考</span></span></a>
+            </div>
+          </div>
+        </article>
+
+        <article id="session-3" class="session searchable" data-kind="resume">
+          <div class="session-head teal">
+            <div class="session-number">第3回</div>
+            <div class="session-title"><span class="part-title">第2部 最先端の巡回監査手法をマスターする</span><span class="chapter-title">第1章 FXクラウドシリーズと効率的な巡回監査</span></div>
+            <div class="text-range">テキスト範囲：P28〜P51</div>
+            <div class="session-date">2025年11月11日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">第2部「最先端の巡回監査手法をマスターする」。FXクラウドシリーズと効率的な巡回監査を確認。</div>
+              <div class="resource-count">1件</div>
+            </div>
+            <div class="resource-list">
+              <a class="resource searchable" data-kind="resume" href="アーカイブ用/第3回/第3回レジュメ.pdf"><span class="file-name">第3回レジュメ</span><span class="file-note">配布用PDF</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">主資料</span></span></a>
+            </div>
+          </div>
+        </article>
+
+        <article id="session-4" class="session searchable" data-kind="resume handout">
+          <div class="session-head teal">
+            <div class="session-number">第4回</div>
+            <div class="session-title"><span class="part-title">第2部 最先端の巡回監査手法をマスターする</span><span class="chapter-title">第2章 最先端の巡回監査手法</span></div>
+            <div class="text-range">テキスト範囲：P52〜P72</div>
+            <div class="session-date">2025年12月9日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">最先端の巡回監査手法と、巡回監査機能の活用資料を確認。</div>
+              <div class="resource-count">3件</div>
+            </div>
+            <div class="resource-list">
+              <a class="resource searchable" data-kind="resume" href="アーカイブ用/第4回/第4回レジュメ.pdf"><span class="file-name">第4回レジュメ</span><span class="file-note">配布用PDF</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">主資料</span></span></a>
+              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第4回/巡回監査実践10か条.pdf"><span class="file-name">巡回監査実践10か条</span><span class="file-note">配布資料</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">参考</span></span></a>
+              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第4回/巡回監査機能ご利用ガイド.pdf"><span class="file-name">巡回監査機能ご利用ガイド</span><span class="file-note">操作確認</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">ガイド</span></span></a>
+            </div>
+          </div>
+        </article>
+
+        <article id="session-5" class="session searchable" data-kind="resume">
+          <div class="session-head gold">
+            <div class="session-number">第5回</div>
+            <div class="session-title"><span class="part-title">第3部 関与先から絶対の信頼と尊敬を受ける会計事務所をつくる（4大業務の同時提供）</span><span class="chapter-title">第1章 保証業務</span></div>
+            <div class="text-range">テキスト範囲：P73〜P83</div>
+            <div class="session-date">2026年1月21日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">第3部「関与先から絶対の信頼と尊敬を受ける会計事務所をつくる」。保証業務を確認。</div>
+              <div class="resource-count">1件</div>
+            </div>
+            <div class="resource-list">
+              <a class="resource searchable" data-kind="resume" href="アーカイブ用/第5回/第5回レジュメ.pdf"><span class="file-name">第5回レジュメ</span><span class="file-note">配布用PDF</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">主資料</span></span></a>
+            </div>
+          </div>
+        </article>
+
+        <article id="session-6" class="session searchable" data-kind="resume handout">
+          <div class="session-head red">
+            <div class="session-number">第6回</div>
+            <div class="session-title"><span class="part-title">第3部 関与先から絶対の信頼と尊敬を受ける会計事務所をつくる（4大業務の同時提供）</span><span class="chapter-title">第2章 経営助言業務</span></div>
+            <div class="text-range">テキスト範囲：P84〜P94</div>
+            <div class="session-date">2026年4月3日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">継続MASと変動損益計算書をつなげ、数字の見方を変え、社長の意思決定と行動変容を促す経営助言を確認。</div>
+              <div class="resource-count">2件</div>
+            </div>
+            <div class="resource-list">
+              <a class="resource searchable" data-kind="resume" href="アーカイブ用/第6回/第6回レジュメ.pdf"><span class="file-name">第6回レジュメ</span><span class="file-note">配布用PDF</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">主資料</span></span></a>
+              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第6回/ここから学ぶ変動損益計算書レジュメ.pdf"><span class="file-name">ここから学ぶ変動損益計算書</span><span class="file-note">参考資料</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">参考</span></span></a>
+            </div>
+          </div>
+        </article>
+
+        <article id="session-7" class="session searchable" data-kind="">
+          <div class="session-head green">
+            <div class="session-number">第7回</div>
+            <div class="session-title"><span class="part-title">第4部 人を育て 組織をつくる</span><span class="chapter-title">第1章 事務所方針の決定と周知、具体的実践まで<br>第2章 経験蓄積、事務所の体質改善、業務の品質管理強化<br>第3章 所内の体制づくり</span></div>
+            <div class="text-range">テキスト範囲：P95〜P109</div>
+            <div class="session-date">2026年6月2日</div>
+          </div>
+          <div class="session-body">
+            <div class="session-summary">
+              <div class="summary-text">第4部「人を育て 組織をつくる」。これまでの学びを、事務所方針、品質管理、所内体制づくりへ落とし込む。</div>
+              <div class="resource-count">0件</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">関連動画・オンデマンド</h2>
+      <div class="common-grid">
+        <a class="common-link searchable" data-kind="media" href="https://ondemand.tkc.jp/lg/TrainingDetail/100121001" target="_blank" rel="noopener"><span class="file-name">FXクラウドで変わる巡回監査</span><span class="file-note">オンデマンド研修</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
+        <a class="common-link searchable" data-kind="media" href="https://ondemand.tkc.jp/lg/TrainingDetail/95329001" target="_blank" rel="noopener"><span class="file-name">ここから学ぶ変動損益計算書</span><span class="file-note">オンデマンド研修</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
+        <a class="common-link searchable" data-kind="media" href="https://youtu.be/GqJuSveMrMg?si=eSQdMQkwqsE3uUbq" target="_blank" rel="noopener"><span class="file-name">コンセプトムービー「税理士の未来」</span><span class="file-note">YouTube</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
+        <a class="common-link searchable" data-kind="media" href="https://youtube.com/playlist?list=PL3jKSnxLD4iL4PAttvWVh7ckBnHrKJTmQ&si=C802U8S4WHGqDnbr" target="_blank" rel="noopener"><span class="file-name">経営者のための月次決算FXクラウド活用術</span><span class="file-note">YouTube プレイリスト</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">おまけ</h2>
+      <div class="common-grid">
+        <a class="common-link searchable" data-kind="tool" href="https://takatrp.github.io/tool-portal/" target="_blank" rel="noopener"><span class="file-name">松本会計ツールポータル</span><span class="file-note">実務で使える周辺ツール集</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">ツール</span></span></a>
+        <a class="common-link searchable" data-kind="tool" href="https://takatrp.github.io/smartphone-keihi-simulator/" target="_blank" rel="noopener"><span class="file-name">スマホで経費 体験シミュレーター</span><span class="file-note">スマホ経費精算の体験ツール</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">ツール</span></span></a>
+      </div>
+    </section>
+
+    <p id="empty" class="empty">該当する資料がありません。</p>
+
+  </main>
+
+  <div class="cover-modal" id="coverModal" aria-hidden="true">
+    <div class="cover-dialog" role="dialog" aria-modal="true" aria-label="TKC会計人 業務の未来設計 書影">
+      <button class="cover-close" type="button" aria-label="閉じる">×</button>
+      <img src="アーカイブ用/共通/TKC会計人業務の未来設計.png" alt="TKC会計人 業務の未来設計 書影 拡大表示">
+    </div>
+  </div>
+
+  <script>
+    const filters = Array.from(document.querySelectorAll(".filter"));
+    const jumpButtons = Array.from(document.querySelectorAll(".jump-button"));
+    const items = Array.from(document.querySelectorAll(".searchable:not(.session)"));
+    const sessions = Array.from(document.querySelectorAll(".session"));
+    const contentSections = Array.from(document.querySelectorAll("main > section"));
+    const empty = document.querySelector("#empty");
+    const bookCard = document.querySelector(".book-card");
+    const coverModal = document.querySelector("#coverModal");
+    const coverClose = document.querySelector(".cover-close");
+    let activeFilter = "all";
+
+    function itemMatches(item) {
+      const kind = item.dataset.kind || "";
+      return activeFilter === "all" || kind.split(/\s+/).includes(activeFilter);
+    }
+
+    function applyFilters() {
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const visible = itemMatches(item);
+        item.style.display = visible ? "" : "none";
+        if (visible) visibleCount += 1;
+      });
+
+      sessions.forEach((session) => {
+        const resources = Array.from(session.querySelectorAll(".resource"));
+        const visibleChildren = resources.some((resource) => resource.style.display !== "none");
+        const visible = activeFilter === "all" || visibleChildren || (resources.length === 0 && itemMatches(session));
+        session.style.display = visible ? "" : "none";
+        if (visible) visibleCount += 1;
+      });
+
+      contentSections.forEach((section) => {
+        const visibleContent = Array.from(section.querySelectorAll(".searchable")).some((item) => item.style.display !== "none");
+        section.style.display = visibleContent ? "" : "none";
+      });
+
+      empty.style.display = visibleCount ? "none" : "block";
+    }
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = activeFilter === button.dataset.filter ? "all" : button.dataset.filter;
+        filters.forEach((item) => item.setAttribute("aria-pressed", item.dataset.filter === activeFilter ? "true" : "false"));
+        applyFilters();
+      });
+    });
+
+    jumpButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (activeFilter === "all") return;
+        activeFilter = "all";
+        filters.forEach((item) => item.setAttribute("aria-pressed", "false"));
+        applyFilters();
+      });
+    });
+
+    function openCoverModal() {
+      coverModal.classList.add("is-open");
+      coverModal.setAttribute("aria-hidden", "false");
+      coverClose.focus();
+    }
+
+    function closeCoverModal() {
+      coverModal.classList.remove("is-open");
+      coverModal.setAttribute("aria-hidden", "true");
+      bookCard.focus();
+    }
+
+    bookCard.addEventListener("click", openCoverModal);
+    bookCard.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openCoverModal();
+      }
+    });
+    coverClose.addEventListener("click", closeCoverModal);
+    coverModal.addEventListener("click", (event) => {
+      if (event.target === coverModal) closeCoverModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && coverModal.classList.contains("is-open")) {
+        closeCoverModal();
+      }
+    });
+  </script>
+</body>
+</html>
