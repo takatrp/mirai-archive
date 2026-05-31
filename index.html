@@ -215,6 +215,11 @@
       overflow-wrap: anywhere;
     }
 
+    .file-note.danger {
+      color: var(--red);
+      font-weight: 800;
+    }
+
     .badge-row {
       display: flex;
       gap: 6px;
@@ -605,7 +610,6 @@
         font-size: 11px;
       }
 
-      .jump-nav,
       .filters {
         display: grid;
         grid-template-columns: repeat(3, max-content);
@@ -614,11 +618,35 @@
         min-width: 0;
       }
 
-      .jump-button,
+      .jump-nav {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 4px;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .jump-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .jump-button {
+        flex: 0 0 auto;
+        min-width: 38px;
+        padding-inline: 5px;
+        font-size: 11px;
+      }
+
       .filter {
         min-height: 34px;
         padding: 6px 8px;
         font-size: 12px;
+      }
+
+      .jump-button {
+        min-height: 34px;
       }
 
       .section-title {
@@ -900,7 +928,7 @@
               <div class="resource-count">1件</div>
             </div>
             <div class="resource-list">
-              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第7回/FX2クラウド全書（関与先への配布禁止）.pdf"><span class="file-name">FX2クラウド全書</span><span class="file-note">参考資料</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">配布資料</span></span></a>
+              <a class="resource searchable" data-kind="handout" href="アーカイブ用/第7回/FX2クラウド全書（関与先への配布禁止）.pdf"><span class="file-name">TKC栃木支部作成 FXクラウド全書</span><span class="file-note danger">※関与先への配布禁止</span><span class="badge-row"><span class="badge">PDF</span><span class="badge">配布資料</span></span></a>
             </div>
           </div>
         </article>
