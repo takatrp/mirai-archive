@@ -611,11 +611,17 @@
       }
 
       .filters {
-        display: grid;
-        grid-template-columns: repeat(3, max-content);
-        gap: 7px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 4px;
         max-width: 100%;
         min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .filters::-webkit-scrollbar {
+        display: none;
       }
 
       .jump-nav {
@@ -641,8 +647,9 @@
 
       .filter {
         min-height: 34px;
-        padding: 6px 8px;
-        font-size: 12px;
+        flex: 0 0 auto;
+        padding: 6px 7px;
+        font-size: 11px;
       }
 
       .jump-button {
@@ -943,7 +950,17 @@
         <a class="common-link searchable" data-kind="media" href="https://ondemand.tkc.jp/lg/TrainingDetail/95329001" target="_blank" rel="noopener"><span class="file-name">ここから学ぶ変動損益計算書</span><span class="file-note">オンデマンド研修<br>※閲覧にはProFITログインが必要です。</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
         <a class="common-link searchable" data-kind="media" href="https://youtu.be/GqJuSveMrMg?si=eSQdMQkwqsE3uUbq" target="_blank" rel="noopener"><span class="file-name">コンセプトムービー「税理士の未来」</span><span class="file-note">YouTube</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
         <a class="common-link searchable" data-kind="media" href="https://youtube.com/playlist?list=PL3jKSnxLD4iL4PAttvWVh7ckBnHrKJTmQ&si=C802U8S4WHGqDnbr" target="_blank" rel="noopener"><span class="file-name">経営者のための月次決算FXクラウド活用術</span><span class="file-note">YouTube プレイリスト</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">動画</span></span></a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">特設ページ</h2>
+      <div class="common-grid">
         <a class="common-link searchable" data-kind="special" href="https://kfs21.tkcnf.or.jp/kmas_proactive/" target="_blank" rel="noopener"><span class="file-name">継続MAS積極活用ページ</span><span class="file-note">※閲覧にはOMSログインが必要です。</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">特設サイト</span></span></a>
+        <a class="common-link searchable" data-kind="special" href="https://kfs21.tkcnf.or.jp/fxcs/" target="_blank" rel="noopener"><span class="file-name">FXクラウドシリーズ専用サイト</span><span class="file-note">※閲覧にはOMSログインが必要です。</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">特設サイト</span></span></a>
+        <a class="common-link searchable" data-kind="special" href="https://kfs21.tkcnf.or.jp/fintech/" target="_blank" rel="noopener"><span class="file-name">銀行信販データ受信機能専用サイト</span><span class="file-note">※閲覧にはOMSログインが必要です。</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">特設サイト</span></span></a>
+        <a class="common-link searchable" data-kind="special" href="https://kfs21.tkcnf.or.jp/proof_save/proof_save.html" target="_blank" rel="noopener"><span class="file-name">証憑保存機能専用サイト</span><span class="file-note">※閲覧にはOMSログインが必要です。</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">特設サイト</span></span></a>
+        <a class="common-link searchable" data-kind="special" href="https://kfs21.tkcnf.or.jp/etaxpay/" target="_blank" rel="noopener"><span class="file-name">電子納税かんたんキット専用サイト</span><span class="file-note">※閲覧にはOMSログインが必要です。</span><span class="badge-row"><span class="badge">外部リンク</span><span class="badge">特設サイト</span></span></a>
       </div>
     </section>
 
