@@ -846,6 +846,7 @@
       <div class="control-row">
         <div class="control-label">資料種別</div>
         <div class="filters" aria-label="資料種別">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">すべて</button>
           <button class="filter" type="button" data-filter="resume" aria-pressed="false">レジュメ</button>
           <button class="filter" type="button" data-filter="handout" aria-pressed="false">配布資料</button>
           <button class="filter" type="button" data-filter="media" aria-pressed="false">動画</button>
@@ -1109,10 +1110,14 @@
       empty.style.display = visibleCount ? "none" : "block";
     }
 
+    function updateFilterButtons() {
+      filters.forEach((item) => item.setAttribute("aria-pressed", item.dataset.filter === activeFilter ? "true" : "false"));
+    }
+
     filters.forEach((button) => {
       button.addEventListener("click", () => {
         activeFilter = activeFilter === button.dataset.filter ? "all" : button.dataset.filter;
-        filters.forEach((item) => item.setAttribute("aria-pressed", item.dataset.filter === activeFilter ? "true" : "false"));
+        updateFilterButtons();
         applyFilters();
       });
     });
@@ -1121,7 +1126,7 @@
       button.addEventListener("click", () => {
         if (activeFilter === "all") return;
         activeFilter = "all";
-        filters.forEach((item) => item.setAttribute("aria-pressed", "false"));
+        updateFilterButtons();
         applyFilters();
       });
     });
