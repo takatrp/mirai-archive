@@ -78,6 +78,24 @@
       padding: 22px 24px 46px;
     }
 
+    .archive-notice {
+      margin-bottom: 12px;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--teal);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 10px 24px rgba(22, 50, 79, .07);
+    }
+
+    .archive-notice p {
+      margin: 0;
+      color: #33475b;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.75;
+    }
+
     .controls {
       position: sticky;
       top: 0;
@@ -465,6 +483,22 @@
       color: var(--muted);
     }
 
+    .site-footer {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .site-footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
     .cover-modal {
       position: fixed;
       inset: 0;
@@ -594,6 +628,15 @@
 
       main {
         padding: 18px 14px 36px;
+      }
+
+      .archive-notice {
+        padding: 14px;
+      }
+
+      .archive-notice p {
+        font-size: 13px;
+        line-height: 1.7;
       }
 
       .controls {
@@ -734,6 +777,15 @@
         min-width: 70px;
         padding: 6px 10px;
       }
+
+      .site-footer {
+        padding: 0 14px 28px;
+      }
+
+      .site-footer-inner {
+        flex-direction: column;
+        gap: 6px;
+      }
     }
 
     @media print {
@@ -754,6 +806,10 @@
   </header>
 
   <main>
+    <div class="archive-notice" aria-label="利用に関するご案内">
+      <p>本ページは、実践勉強会参加者向けの資料アーカイブです。<br>掲載資料・リンクは、参加者自身の復習および事務所内での学習目的でご利用ください。<br>資料の無断転載、関与先への再配布、第三者への転送はご遠慮ください。<br>一部リンク先は、TKC会員向けログインが必要です。</p>
+    </div>
+
     <div class="controls" aria-label="資料ナビゲーション">
       <div class="control-row">
         <div class="control-label">回数ジャンプ</div>
@@ -975,6 +1031,13 @@
     <p id="empty" class="empty">該当する資料がありません。</p>
 
   </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span>作成：神戸中央支部 松本考史</span>
+      <span>最終更新日：<time datetime="2026-06-01">2026年6月1日</time></span>
+    </div>
+  </footer>
 
   <div class="cover-modal" id="coverModal" aria-hidden="true">
     <div class="cover-dialog" role="dialog" aria-modal="true" aria-label="TKC会計人 業務の未来設計 書影">
