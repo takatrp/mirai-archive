@@ -36,7 +36,14 @@
     }
 
     .topbar {
-      background: var(--navy);
+      background-color: #11b7b7;
+      background-image:
+        radial-gradient(ellipse at 12% 18%, rgba(255, 255, 255, .20) 0%, rgba(255, 255, 255, .06) 26%, transparent 56%),
+        radial-gradient(ellipse at 82% 20%, rgba(5, 97, 105, .20) 0%, rgba(5, 97, 105, .08) 30%, transparent 62%),
+        radial-gradient(ellipse at 64% 82%, rgba(255, 255, 255, .12) 0%, rgba(255, 255, 255, .04) 34%, transparent 66%),
+        linear-gradient(135deg, rgba(6, 129, 135, .22) 0%, transparent 34%, rgba(255, 255, 255, .08) 52%, transparent 74%),
+        linear-gradient(160deg, #12baba 0%, #0ea9ac 52%, #12b8b2 100%);
+      background-blend-mode: soft-light, multiply, soft-light, overlay, normal;
       color: var(--white);
       padding: 26px 32px 22px;
     }
