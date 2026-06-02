@@ -1068,7 +1068,7 @@
   <footer class="site-footer">
     <div class="site-footer-inner">
       <span>作成：神戸中央支部 松本考史</span>
-      <span>最終更新日：<time datetime="2026-06-01">2026年6月1日</time></span>
+      <span>最終更新日：<time id="lastUpdated" datetime="">取得中</time></span>
     </div>
   </footer>
 
@@ -1089,7 +1089,27 @@
     const bookCard = document.querySelector(".book-card");
     const coverModal = document.querySelector("#coverModal");
     const coverClose = document.querySelector(".cover-close");
+    const lastUpdated = document.querySelector("#lastUpdated");
     let activeFilter = "all";
+
+    function updateLastModified() {
+      if (!lastUpdated) return;
+      const modified = new Date(document.lastModified);
+      if (Number.isNaN(modified.getTime())) {
+        lastUpdated.textContent = "更新日不明";
+        return;
+      }
+
+      const year = modified.getFullYear();
+      const month = String(modified.getMonth() + 1).padStart(2, "0");
+      const day = String(modified.getDate()).padStart(2, "0");
+      lastUpdated.dateTime = `${year}-${month}-${day}`;
+      lastUpdated.textContent = new Intl.DateTimeFormat("ja-JP", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }).format(modified);
+    }
 
     function itemMatches(item) {
       const kind = item.dataset.kind || "";
@@ -1170,6 +1190,7 @@
         closeCoverModal();
       }
     });
+    updateLastModified();
   </script>
 </body>
 </html>
