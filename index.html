@@ -219,6 +219,10 @@
       align-items: stretch;
     }
 
+    .common-materials {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
     .common-link,
     .resource {
       display: grid;
@@ -357,6 +361,23 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.45;
+    }
+
+    .worksheet-card {
+      grid-template-columns: 76px 1fr;
+      align-items: center;
+      gap: 12px;
+      border-left-color: #a26eb0;
+      min-height: 150px;
+    }
+
+    .worksheet-thumb {
+      width: 70px;
+      aspect-ratio: 793 / 1121;
+      object-fit: cover;
+      border-radius: 3px;
+      box-shadow: 0 8px 18px rgba(22, 50, 79, .18);
+      background: #fff;
     }
 
     .timeline {
@@ -748,6 +769,15 @@
         width: 82px;
       }
 
+      .worksheet-card {
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .worksheet-thumb {
+        width: 82px;
+      }
+
       .session-head {
         padding: 14px 16px 15px;
         row-gap: 8px;
@@ -866,7 +896,7 @@
 
     <section>
       <h2 class="section-title">共通資料</h2>
-      <div class="common-grid">
+      <div class="common-grid common-materials">
         <a class="common-link searchable" data-kind="handout" href="アーカイブ用/共通/神戸中央 カリキュラム.pdf">
           <span class="file-name">神戸中央 カリキュラム</span>
           <span class="file-note">シリーズ全体の流れ</span>
@@ -888,6 +918,14 @@
             <span class="file-note"><span class="book-note-main">本勉強会の参照テキスト</span><span class="book-note-extra">※サプライネットショップで追加購入できます</span></span>
           </span>
         </div>
+        <a class="common-link searchable worksheet-card" data-kind="handout" href="アーカイブ用/共通/実践ワークシート集.pdf">
+          <img class="worksheet-thumb" src="アーカイブ用/共通/実践ワークシート集.png" alt="実践ワークシート集 表紙">
+          <span class="book-copy">
+            <span class="file-name">実践ワークシート集</span>
+            <span class="file-note">実践で使えるワークシート集</span>
+            <span class="badge-row"><span class="badge">PDF</span><span class="badge">共通</span></span>
+          </span>
+        </a>
       </div>
     </section>
 
